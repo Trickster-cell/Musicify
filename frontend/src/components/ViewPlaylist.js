@@ -78,6 +78,7 @@ const ViewPlaylist = (props) => {
     if (json.success) {
       props.showAlert("Added Track Successfully to Playlist", "success");
       handleShowModal();
+      window.location.reload();
     } else {
       console.log(json);
       props.showAlert("Error while adding track", "danger");

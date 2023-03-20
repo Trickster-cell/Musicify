@@ -9,26 +9,26 @@ const PlaylistItem = (props) => {
   const [status, setStatus] = useState(null);
   const [iconLink, setIconLink] = useState("fa-lock");
 
+  const getPrivateStatus = async (id1) => {
+    try {
+      const response = await fetch(
+        `https://musicify-v1.onrender.com/api/auth/getpvtStatus/${id1}`,
+        {
+          method: "GET",
+          headers: {
+            "auth-token": localStorage.getItem("token"),
+          },
+        }
+      );
+      const json = await response.json();
+      setStatus(json.success);
+      setIconLink(json.success ? "fa-earth-asia" : "fa-lock");
+    } catch (error) {
+      console.error(error);
+      setStatus(null);
+    }
+  };
   useEffect(() => {
-    const getPrivateStatus = async (id1) => {
-      try {
-        const response = await fetch(
-          `https://musicify-v1.onrender.com/api/auth/getpvtStatus/${id1}`,
-          {
-            method: "GET",
-            headers: {
-              "auth-token": localStorage.getItem("token"),
-            },
-          }
-        );
-        const json = await response.json();
-        setStatus(json.success);
-        setIconLink(json.success ? "fa-earth-asia" : "fa-lock");
-      } catch (error) {
-        console.error(error);
-        setStatus(null);
-      }
-    };
     getPrivateStatus(id);
   }, []);
 

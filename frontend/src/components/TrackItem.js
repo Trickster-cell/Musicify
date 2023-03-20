@@ -86,6 +86,7 @@ const TrackItem = ({ id }) => {
     setDeleted(true);
     setIsPlayerOpen(false);
     setShowModal(false);
+    window.location.reload();
   };
 
   const onEnded = () => {

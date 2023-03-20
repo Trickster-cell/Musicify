@@ -216,7 +216,6 @@ label {
   background-color: grey;
 }
 
-
 .restart-button:hover svg,
 .close-button:hover svg {
   fill: yellow;
@@ -235,4 +234,8 @@ label {
 
 .close-button svg {
   transform: rotate(45deg);
+}
+
+img, i {
+  cursor: pointer;
 }
