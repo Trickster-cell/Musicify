@@ -3,7 +3,7 @@ import { useState } from "react";
 import UserContext from "./userContext";
 
 const UserState = (props) => {
-  const host = "https://musicify-v1.onrender.com";
+  const host = "http://localhost:5000";
   const state = {
     username: localStorage.getItem("username"),
     email: localStorage.getItem("email"),

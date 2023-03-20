@@ -12,7 +12,7 @@ const PlaylistItem = (props) => {
   const getPrivateStatus = async (id1) => {
     try {
       const response = await fetch(
-        `https://musicify-v1.onrender.com/api/auth/getpvtStatus/${id1}`,
+        `http://localhost:5000/api/auth/getpvtStatus/${id1}`,
         {
           method: "GET",
           headers: {
@@ -34,7 +34,7 @@ const PlaylistItem = (props) => {
 
   const makePlaylistPublic = async (id1) => {
     const response = await fetch(
-      `https://musicify-v1.onrender.com/api/auth/public/${id1}`,
+      `http://localhost:5000/api/auth/public/${id1}`,
       {
         method: "POST",
         headers: {
@@ -48,7 +48,7 @@ const PlaylistItem = (props) => {
 
   const makePlaylistPrivate = async (id1) => {
     const response = await fetch(
-      `https://musicify-v1.onrender.com/api/auth/private/${id1}`,
+      `http://localhost:5000/api/auth/private/${id1}`,
       {
         method: "POST",
         headers: {
@@ -75,7 +75,7 @@ const PlaylistItem = (props) => {
     const fetchPlaylistDetails = async () => {
       try {
         const response = await fetch(
-          `https://musicify-v1.onrender.com/api/auth/getplaylist/${id}`,
+          `http://localhost:5000/api/auth/getplaylist/${id}`,
           {
             headers: {
               "auth-token": localStorage.getItem("token"),

@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "./Navbar";
+import Navbar from "../Navbar";
 import Form from "react-bootstrap/Form";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -54,9 +54,9 @@ const ViewPlaylist = (props) => {
 
   const handleCreateNewTrack = async (event) => {
     event.preventDefault();
-    console.log(`https://musicify-v1.onrender.com/api/auth/addTrackToPlaylist/${id}`);
+    console.log(`http://localhost:5000/api/auth/addTrackToPlaylist/${id}`);
     const response = await fetch(
-      `https://musicify-v1.onrender.com/api/auth/addTrackToPlaylist/${id}`,
+      `http://localhost:5000/api/auth/addTrackToPlaylist/${id}`,
       {
         method: "POST",
         headers: {
@@ -102,7 +102,7 @@ const ViewPlaylist = (props) => {
     const fetchPlaylistDetails = async () => {
       try {
         const response = await fetch(
-          `https://musicify-v1.onrender.com/api/auth/getplaylist/${id}`,
+          `http://localhost:5000/api/auth/getplaylist/${id}`,
           {
             headers: {
               "auth-token": localStorage.getItem("token"),

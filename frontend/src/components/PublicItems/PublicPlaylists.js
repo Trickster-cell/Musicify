@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "./Navbar";
-import "./Profile.css";
+import Navbar from "../Navbar";
+import "../Profile.css";
 import PublicPlaylistsAll from "./PublicPlaylistsAll";
-import userContext from "../context/userContext";
-import Playlists from "./Playlists";
 
 const PublicPlaylists = () => {
   const [pubPlaylists, setPubPlaylists] = useState(null);
@@ -11,7 +9,7 @@ const PublicPlaylists = () => {
   const fetchPublicPlaylists = async () => {
     try {
       const response = await fetch(
-        `https://musicify-v1.onrender.com/api/auth/getPublicPlaylists`
+        `http://localhost:5000/api/auth/getPublicPlaylists`
       );
       const json = await response.json();
       setPubPlaylists(json);

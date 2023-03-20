@@ -18,7 +18,7 @@ let upload = multer({
   storage,
 });
 
-// Route 1(Create a User)
+// (Create a User)
 router.post(
   "/createUser",
   [
@@ -72,7 +72,7 @@ router.post(
   }
 );
 
-// Route2: Authenticate a user
+// Login a user
 router.post(
   "/login",
   [
@@ -118,7 +118,7 @@ router.post(
   }
 );
 
-// Route3: Get logged in User details: POST "/api/auth/getuser"
+// Get logged in User details: POST "/api/auth/getuser"
 router.get("/getuser", fetchuser, async (req, res) => {
   try {
     const userId = req.user.id;
@@ -141,6 +141,8 @@ router.get("/getOwner/:id", async (req, res) => {
   }
 });
 
+
+// Get private/public status of Playlist
 router.get("/getpvtStatus/:playlistId", fetchuser, async (req, res) => {
   try {
     const playlistID = req.params.playlistId;
@@ -161,6 +163,8 @@ router.get("/getpvtStatus/:playlistId", fetchuser, async (req, res) => {
   }
 });
 
+
+// fetch all public playlists
 router.get("/getPublicPlaylists", async (req, res) => {
   try {
     const publicPlaylists = await PublicPlaylist.find();
@@ -170,6 +174,8 @@ router.get("/getPublicPlaylists", async (req, res) => {
   }
 });
 
+
+// fetching playlist(pvt) details
 router.get("/getplaylist/:id", fetchuser, async (req, res) => {
   try {
     const playlistId = req.params.id;
@@ -181,6 +187,8 @@ router.get("/getplaylist/:id", fetchuser, async (req, res) => {
   }
 });
 
+
+// fetching details of public playlist
 router.get("/getPublicPlaylist/:id", async (req, res) => {
   try {
     const pubPlaylistId = req.params.id;
@@ -200,6 +208,8 @@ router.get("/getPublicPlaylist/:id", async (req, res) => {
   }
 });
 
+
+// fetching details of track
 router.get("/gettrack/:id", fetchuser, async (req, res) => {
   try {
     const trackID = req.params.id;
@@ -211,6 +221,8 @@ router.get("/gettrack/:id", fetchuser, async (req, res) => {
   }
 });
 
+
+// fetching details of track (pvt)
 router.get("/gePublicttrack/:id", async (req, res) => {
   try {
     const trackID = req.params.id;
@@ -222,6 +234,8 @@ router.get("/gePublicttrack/:id", async (req, res) => {
   }
 });
 
+
+// get tracks of playlist
 router.get("/getTracks/:PlaylistID", fetchuser, async (req, res) => {
   try {
     const userId = req.user.id;
@@ -238,14 +252,11 @@ router.get("/getTracks/:PlaylistID", fetchuser, async (req, res) => {
   }
 });
 
+
+// get tracks of public playlist
 router.get("/getPublicTracks/:PlaylistID", async (req, res) => {
   try {
-    // const userId = req.user.id;
     const playlistId = req.params.PlaylistID;
-    // const user = await User.findById(userId).select("playlists");
-    // if (!user.playlists.includes(playlistId)) {
-    //   return res.status(401).json({ msg: "Unauthorized Playlist" });
-    // }
     const playlist = await Playlist.findById(playlistId);
     res.json(playlist);
   } catch (error) {
@@ -254,6 +265,8 @@ router.get("/getPublicTracks/:PlaylistID", async (req, res) => {
   }
 });
 
+
+// create new playlist
 router.post(
   "/createPlaylist",
   fetchuser,
@@ -299,6 +312,8 @@ router.post(
   }
 );
 
+
+// uploading file to cloudinary
 router.post(
   "/uploadFile",
   fetchuser,
@@ -318,13 +333,14 @@ router.post(
           return res.status(500).json({ msg: "Failed to upload file" });
         }
 
-        // Here, you can use the result object returned by Cloudinary to store the audio URL in your database or return it to the client
-        res.json({ audioUrl: result.secure_url, publicID: result.public_id });
+       res.json({ audioUrl: result.secure_url, publicID: result.public_id });
       }
     );
   }
 );
 
+
+// add track to playlist
 router.post(
   "/addTrackToPlaylist/:playlistId",
   fetchuser,
@@ -372,6 +388,8 @@ router.post(
   }
 );
 
+
+// function to get public id of cloudinary asset from url
 function getPublicIdfromURL(url) {
   const splitURL = url.split("/");
   const pubidformat = splitURL[splitURL.length - 1];
@@ -379,6 +397,8 @@ function getPublicIdfromURL(url) {
   return publicID;
 }
 
+
+// deleting file from playlist as well as cloudinary
 router.delete("/deleteFile/:trackId", fetchuser, async (req, res) => {
   const trackID = req.params.trackId;
   let success = false;
@@ -410,6 +430,8 @@ router.delete("/deleteFile/:trackId", fetchuser, async (req, res) => {
   }
 });
 
+
+// making a pvt playlist public
 router.post("/public/:playlistId", fetchuser, async (req, res) => {
   try {
     const playListID = req.params.playlistId;
@@ -437,6 +459,8 @@ router.post("/public/:playlistId", fetchuser, async (req, res) => {
   }
 });
 
+
+// making a public playlist pvt
 router.post("/private/:playlistId", fetchuser, async (req, res) => {
   const playlistId = req.params.playlistId;
   const playlist = await Playlist.findById(playlistId);
@@ -458,6 +482,8 @@ router.post("/private/:playlistId", fetchuser, async (req, res) => {
   return res.json({ error: "Internal Server Error" });
 });
 
+
+// for following user
 router.post("/follow", fetchuser, [
   body("username", "Enter a valid username").isLength({ min: 3 }),
   async (req, res) => {
@@ -485,6 +511,8 @@ router.post("/follow", fetchuser, [
   },
 ]);
 
+
+// for unfollowing user
 router.post("/unfollow", fetchuser, [
   body("username", "Enter a valid username").isLength({ min: 3 }),
   async (req, res) => {
@@ -512,6 +540,9 @@ router.post("/unfollow", fetchuser, [
   },
 ]);
 
+
+// for liking track
+
 router.post("/like/:trackId", fetchuser, async (req, res) => {
   const trackID = req.params.trackId;
   try {
@@ -532,6 +563,8 @@ router.post("/like/:trackId", fetchuser, async (req, res) => {
   }
 });
 
+
+// for unliking track
 router.post("/unlike/:trackId", fetchuser, async (req, res) => {
   const trackID = req.params.trackId;
   try {

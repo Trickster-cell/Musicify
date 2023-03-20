@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import Navbar from "./Navbar";
-import "./Profile.css";
-import userContext from "../context/userContext";
+import Navbar from "../Navbar";
+import "../Profile.css";
+import userContext from "../../context/userContext";
 import Playlists from "./Playlists";
 
 const MyPlaylists = (props) => {
@@ -23,7 +23,7 @@ const MyPlaylists = (props) => {
   const handleCreateNewPlaylist = async (event) => {
     event.preventDefault();
     const response = await fetch(
-      "https://musicify-v1.onrender.com/api/auth/createPlaylist",
+      "http://localhost:5000/api/auth/createPlaylist",
       {
         method: "POST",
         headers: {

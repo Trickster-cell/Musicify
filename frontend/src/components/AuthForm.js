@@ -46,7 +46,7 @@ const AuthForm = (props) => {
 
   const handleSigninSubmit = async (event) => {
     event.preventDefault();
-    const response = await fetch("https://musicify-v1.onrender.com/api/auth/login", {
+    const response = await fetch("http://localhost:5000/api/auth/login", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -72,7 +72,7 @@ const AuthForm = (props) => {
   const handleSignupSubmit = async (event) => {
     event.preventDefault();
     console.log("signup");
-    const response = await fetch("https://musicify-v1.onrender.com/api/auth/createuser", {
+    const response = await fetch("http://localhost:5000/api/auth/createuser", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

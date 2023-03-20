@@ -13,7 +13,7 @@ const PublicPlaylistItem = (props) => {
   const fetchowner = async () => {
     try {
       const response = await fetch(
-        `https://musicify-v1.onrender.com/api/auth/getOwner/${ownerid}`
+        `http://localhost:5000/api/auth/getOwner/${ownerid}`
       );
       const json = await response.json();
       setOwner(json);
@@ -26,7 +26,7 @@ const PublicPlaylistItem = (props) => {
   const fetchPublicPlaylists = async () => {
     try {
       const response = await fetch(
-        `https://musicify-v1.onrender.com/api/auth/getPublicPlaylist/${id}`
+        `http://localhost:5000/api/auth/getPublicPlaylist/${id}`
       );
       const json = await response.json();
       console.log(json);

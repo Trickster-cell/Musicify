@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import userContext from "../context/userContext";
 import TrackItem from "./TrackItem";
 import "./Tracks.css";
 
@@ -12,7 +11,7 @@ const PubTracks = (props) => {
   const fetchPubTracks = async () => {
     try {
       const response = await fetch(
-        `https://musicify-v1.onrender.com/api/auth/getPublicTracks/${playlistid}`
+        `http://localhost:5000/api/auth/getPublicTracks/${playlistid}`
       );
       const json = await response.json();
       console.log(json.tracks); // added for debugging
@@ -25,7 +24,7 @@ const PubTracks = (props) => {
   const fetchTrackDetails = async (id1) => {
     try {
       const response = await fetch(
-        `https://musicify-v1.onrender.com/api/auth/getPublicttrack/${id1}`,
+        `http://localhost:5000/api/auth/getPublicttrack/${id1}`,
         {
           method: "GET",
         }

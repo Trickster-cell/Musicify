@@ -5,11 +5,11 @@ import Alert from "./components/Alert";
 import AuthForm from "./components/AuthForm";
 import Profile from "./components/Profile";
 import UserState from "./context/UserState";
-import MyPlaylists from "./components/MyPlaylists";
-import ViewPlaylist from "./components/ViewPlaylist";
-import PublicPlaylists from "./components/PublicPlaylists";
+import MyPlaylists from "./components/Playlists/MyPlaylists";
+import ViewPlaylist from "./components/Playlists/ViewPlaylist";
+import PublicPlaylists from "./components/PublicItems/PublicPlaylists";
 import About from "./components/About";
-import ViewPublicPlaylists from "./components/ViewPublicPlaylists";
+import ViewPublicPlaylists from "./components/PublicItems/ViewPublicPlaylists";
 
 function App() {
   const [alert, setAlert] = useState(null);

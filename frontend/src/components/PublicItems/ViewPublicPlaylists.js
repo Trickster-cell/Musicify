@@ -1,14 +1,8 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import Navbar from "./Navbar";
-import Form from "react-bootstrap/Form";
+import Navbar from "../Navbar";
 import { useState } from "react";
 import { useEffect } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/fontawesome-free-solid";
-import axios from "axios";
-import { FaSpinner, FaCheck } from "react-icons/fa";
-import Tracks from "./Tracks";
 import PubTracks from "./PubTracks";
 
 const ViewPublicPlaylists = (props) => {
@@ -24,7 +18,7 @@ const ViewPublicPlaylists = (props) => {
   const fetchPublicPlaylists = async () => {
     try {
       const response = await fetch(
-        `https://musicify-v1.onrender.com/api/auth/getPublicPlaylist/${id}`
+        `http://localhost:5000/api/auth/getPublicPlaylist/${id}`
       );
       const json = await response.json();
       console.log(json);
