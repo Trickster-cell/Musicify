@@ -1,6 +1,6 @@
-const dotenv = require("dotenv");
-const path = require("path");
-dotenv.config({ path: path.join(__dirname, "..", ".env") });
+// const dotenv = require("dotenv");
+// const path = require("path");
+// dotenv.config({ path: path.join(__dirname, "..", ".env") });
 const connectToMongo = require("./db");
 const express = require("express");
 const cloudinary = require("cloudinary").v2;
