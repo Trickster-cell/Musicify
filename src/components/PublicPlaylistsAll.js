@@ -1,0 +1,49 @@
+import React, { useContext, useEffect, useState } from "react";
+import userContext from "../context/userContext";
+import PlaylistItem from "./PlaylistItem";
+import "./Playlists.css";
+import PublicPlaylistItem from "./PublicPlaylistItem";
+
+const PublicPlaylistsAll = (props) => {
+  const userDetails = useContext(userContext);
+  const [pubPlaylists, setPubPlaylists] = useState([]);
+
+  const fetchPublicPlaylists = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:5000/api/auth/getPublicPlaylists`
+      );
+      const json = await response.json();
+      setPubPlaylists(json);
+      console.log(json);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  useEffect(() => {
+    fetchPublicPlaylists();
+    // console.log("pubarray");
+    console.log(pubPlaylists);
+  }, []);
+
+  let playListArray = [...pubPlaylists];
+
+  if (!pubPlaylists) {
+    return <div>Loading...</div>;
+  }
+
+  return (
+    <div className="playlist-container">
+      {pubPlaylists.map((playlist) => (
+        <PublicPlaylistItem
+          className="my-2 mx-2"
+          key={playlist._id}
+          id={playlist._id}
+          ownerid={playlist.ownerId}
+        />
+      ))}
+    </div>
+  );
+};
+
+export default PublicPlaylistsAll;

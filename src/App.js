@@ -1,24 +1,69 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useState } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Alert from "./components/Alert";
+import AuthForm from "./components/AuthForm";
+import Profile from "./components/Profile";
+import UserState from "./context/UserState";
+import MyPlaylists from "./components/MyPlaylists";
+import ViewPlaylist from "./components/ViewPlaylist";
+import PublicPlaylists from "./components/PublicPlaylists";
+import About from "./components/About";
+import ViewPublicPlaylists from "./components/ViewPublicPlaylists";
 
 function App() {
+  const [alert, setAlert] = useState(null);
+  const showAlert = (message, type) => {
+    setAlert({
+      msg: message,
+      type: type,
+    });
+    setTimeout(() => {
+      setAlert(null);
+    }, 1500);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <UserState>
+        <BrowserRouter>
+          <Alert alert={alert} />
+          <Routes>
+            <Route
+              path="/"
+              element={<AuthForm showAlert={showAlert} />}
+            ></Route>
+
+            <Route
+              path="/profile"
+              element={<Profile showAlert={showAlert} />}
+            ></Route>
+            <Route
+              path="/MyPlaylists"
+              element={<MyPlaylists showAlert={showAlert} />}
+            ></Route>
+            <Route
+              path="/PublicPlaylists"
+              element={<PublicPlaylists showAlert={showAlert} />}
+            ></Route>
+            <Route
+              exact
+              path="/viewPlayList/:id"
+              element={<ViewPlaylist showAlert={showAlert} />}
+            ></Route>
+            <Route
+              exact
+              path="viewPublicPlaylist/:id"
+              element={<ViewPublicPlaylists showAlert={showAlert} />}
+            ></Route>
+            <Route
+              exact
+              path="/About"
+              element={<About showAlert={showAlert} />}
+            ></Route>
+          </Routes>
+        </BrowserRouter>
+      </UserState>
+    </>
   );
 }
 
