@@ -1,13 +1,17 @@
+const dotenv = require("dotenv");
+const path = require("path");
+dotenv.config({ path: path.join(__dirname, "..", ".env") });
 const connectToMongo = require("./db");
 const express = require("express");
 const cloudinary = require("cloudinary").v2;
+
 var cors = require("cors");
 connectToMongo();
 
 cloudinary.config({
-  cloud_name: "drxdqo1xr",
-  api_key: "264938527261548",
-  api_secret: "_p_Ry226TikW-TTJHuX9wSU_zEQ",
+  cloud_name: process.env.CloudinaryCloudName,
+  api_key: process.env.CloudinaryCloudApiKey,
+  api_secret: process.env.CloudinaryCloudApiSecret,
 });
 
 var app = express();
