@@ -21,7 +21,7 @@ const PublicPlaylists = () => {
     }
   };
   useEffect(() => {
-    fetchPublicPlaylists();
+    fetchPublicPlaylists()
   }, []);
 
   if (!pubPlaylists) {
