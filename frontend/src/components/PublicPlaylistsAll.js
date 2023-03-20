@@ -11,7 +11,7 @@ const PublicPlaylistsAll = (props) => {
   const fetchPublicPlaylists = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/getPublicPlaylists`
+        `https://musicify-v1.onrender.com/api/auth/getPublicPlaylists`
       );
       const json = await response.json();
       setPubPlaylists(json);

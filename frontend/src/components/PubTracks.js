@@ -12,7 +12,7 @@ const PubTracks = (props) => {
   const fetchPubTracks = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/getPublicTracks/${playlistid}`
+        `https://musicify-v1.onrender.com/api/auth/getPublicTracks/${playlistid}`
       );
       const json = await response.json();
       console.log(json.tracks); // added for debugging
@@ -25,7 +25,7 @@ const PubTracks = (props) => {
   const fetchTrackDetails = async (id1) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/getPublicttrack/${id1}`,
+        `https://musicify-v1.onrender.com/api/auth/getPublicttrack/${id1}`,
         {
           method: "GET",
         }

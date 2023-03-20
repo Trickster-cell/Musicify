@@ -12,7 +12,7 @@ const Tracks = (props) => {
   const fetchTracks = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/getTracks/${playlistid}`,
+        `https://musicify-v1.onrender.com/api/auth/getTracks/${playlistid}`,
         {
           headers: {
             "auth-token": localStorage.getItem("token"),
@@ -29,7 +29,7 @@ const Tracks = (props) => {
   const fetchTrackDetails = async (id1) => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/gettrack/${id1}`,
+        `https://musicify-v1.onrender.com/api/auth/gettrack/${id1}`,
         {
           method: "GET",
           headers: {
