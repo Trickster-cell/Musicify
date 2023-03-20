@@ -59,7 +59,7 @@ router.post(
         },
       };
 
-      const authtoken = jwt.sign(data, JWT_SECRET);
+      const authtoken = jwt.sign(data, JWT_SECRET, { expiresIn: "30d" });
       // console.log(jwtData);
       success = true;
       // res.json(user);
@@ -105,7 +105,7 @@ router.post(
         },
       };
 
-      const authtoken = jwt.sign(data, JWT_SECRET);
+      const authtoken = jwt.sign(data, JWT_SECRET, { expiresIn: "30d" });
       // console.log(jwtData);
 
       // res.json(user);
