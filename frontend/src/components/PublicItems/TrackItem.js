@@ -50,7 +50,7 @@ const TrackItem = ({ id }) => {
   const fetchTrackDetails = async () => {
     try {
       const response = await fetch(
-        `http://localhost:5000/api/auth/gettrack/${id}`,
+        `https://musicify-v1.onrender.com/api/auth/gettrack/${id}`,
         {
           method: "GET",
           headers: {
@@ -73,7 +73,7 @@ const TrackItem = ({ id }) => {
   const handleDelete = async (id1) => {
     console.log(id1);
     const response = await fetch(
-      `http://localhost:5000/api/auth/deleteFile/${id1}`,
+      `https://musicify-v1.onrender.com/api/auth/deleteFile/${id1}`,
       {
         method: "DELETE",
         headers: {

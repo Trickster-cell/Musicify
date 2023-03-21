@@ -23,7 +23,7 @@ const MyPlaylists = (props) => {
   const handleCreateNewPlaylist = async (event) => {
     event.preventDefault();
     const response = await fetch(
-      "http://localhost:5000/api/auth/createPlaylist",
+      "https://musicify-v1.onrender.com/api/auth/createPlaylist",
       {
         method: "POST",
         headers: {

@@ -54,9 +54,9 @@ const ViewPlaylist = (props) => {
 
   const handleCreateNewTrack = async (event) => {
     event.preventDefault();
-    console.log(`http://localhost:5000/api/auth/addTrackToPlaylist/${id}`);
+    console.log(`https://musicify-v1.onrender.com/api/auth/addTrackToPlaylist/${id}`);
     const response = await fetch(
-      `http://localhost:5000/api/auth/addTrackToPlaylist/${id}`,
+      `https://musicify-v1.onrender.com/api/auth/addTrackToPlaylist/${id}`,
       {
         method: "POST",
         headers: {
@@ -102,7 +102,7 @@ const ViewPlaylist = (props) => {
     const fetchPlaylistDetails = async () => {
       try {
         const response = await fetch(
-          `http://localhost:5000/api/auth/getplaylist/${id}`,
+          `https://musicify-v1.onrender.com/api/auth/getplaylist/${id}`,
           {
             headers: {
               "auth-token": localStorage.getItem("token"),
